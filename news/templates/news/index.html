@@ -1,0 +1,21 @@
+<body>
+    <h1>Tengri News</h1>
+    {% for new in news %}
+        <a href="{% url 'news:detail' new.id %}">
+            <h4>{{ new.title }}</h4>
+        </a>
+        <p>{{new.content}}</p>
+    {% endfor %}
+
+
+    <!-- place to add comment form and name to send to view -->
+    <h3>What Happened?</h3>
+    <form action="{% url 'news:add_new_info' %}" method="post">
+        {% csrf_token %}
+        Add: Title <input type="text" name="title">
+        Add: Content <input type="text" name="text">
+        <input type="submit" value="Submit">
+    </form>
+
+
+</body>

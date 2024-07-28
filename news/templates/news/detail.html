@@ -1,0 +1,24 @@
+<body>
+    <h1>Tengri News</h1>
+       
+        <h1>{{ new.title }}</h1>
+
+        <p>{{new.content}}</p>
+       
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+
+        <h2>Comments</h2>
+        <ol>
+            {% for comment in comments %}
+                <li>{{comment.content}}</li>
+            {%endfor%}
+        </ol>
+    <form action="{% url 'news:add_comment' new.id %}" method="post">
+        {% csrf_token %}
+        <h3>Add Comment</h3>
+            <input type="text" name="comment">
+            <input type="submit" value="Submit">
+     </form>
+</body>
