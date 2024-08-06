@@ -25,10 +25,19 @@ class TestIndexView(TestCase):
         new1.save()
         new2.save()
         new3.save()
-        response = self.client.get("/news/")
-
-    # test for detail page to be exact
 
 
-    
+
+        # test for detail page to be exact
+class TestDetailView(TestCase):
+    def test_detail(self):
+        info = News(title="My name is Sir Alex Ferguson", content="I am a professional coach")
+        info.save()
+
+        response = self.client.get(f"/news/{info.id}/")
+        self.assertContains(response, info.title)
+        self.assertContains(response, info.content)
+
+
+
     # test for comments in detail page to be in descending order
